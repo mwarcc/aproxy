@@ -1,0 +1,21 @@
+# 🎯 Vulnérabilité – API d’achat sur MovieStarPlanet
+
+**URL vulnérable :** `https://eu.mspapis.com/shoppurchase/v1/games/j68d/profiles/{profile_id}/purchase`  
+**Gravité :** Haute  
+**Type :** Abus logique / DoS applicatif  
+**Nécessite authentification :** Oui (compte gratuit suffisant)
+
+---
+
+## 📌 Description
+
+L’endpoint d’achat permet de soumettre une liste d’objets gratuits avec des variations de couleurs.  
+Il est normalement impossible d’acheter deux fois le **même vêtement avec exactement la même couleur**.
+
+Cependant, **en changeant légèrement les couleurs** (par exemple une nuance ou un alpha), il est possible d’acheter **des centaines de fois le même objet gratuitement**, en une seule requête.
+
+Cela permet de :
+- **Remplir l’inventaire** avec des objets dupliqués (légèrement différents).
+- **Surcharger le backend** (rendu graphique, stockage, base de données).
+- **Créer une attaque de type DoS** logique (sans flood réseau).
+
